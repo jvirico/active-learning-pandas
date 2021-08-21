@@ -67,3 +67,13 @@ df_normalized = normalize(df,['sepalo_ratio','petalo_ratio'])
 print(df_normalized.head(9))
 
 #dprep.RunNormalityAnalysis(df_normalized['sepalo_ratio'])
+print(df.groupby('class')['sepalo_ratio'].mean())
+print(df['class'].value_counts())
+
+df_group_sepalo = df.groupby('class')['sepalo_ratio'].mean()
+df_group_sepalo.name = 'sepalo_ratio_mean'
+print(df_group_sepalo)
+
+df_join = df.join(df_group_sepalo, on=['class'], how='inner')
+print(df_join.head(9))
+
